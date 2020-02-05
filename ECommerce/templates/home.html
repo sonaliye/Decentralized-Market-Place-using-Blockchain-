@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block home %}
+<form class="form-default">
+  <div class="shopping-cart2">
+    <!-- Title -->
+    <div class="title">
+      Select User for Operations
+    </div>
+    <div class="item">
+      <div style="margin:10px;">
+          <input id="loginUsername" style="width: 250px;" type="text" name="Username" value="" placeholder="Username"><br>
+          <input id="loginPassword" style="width: 250px;" type="password" name="Password" value="" placeholder="Password"><br>
+      </div>
+      <div class="buttons" >
+          <button id="btnLogin" class = "btn" style="width:150px;" type = "submit">Change User</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity -->
+  <div class="shopping-cart2">
+    <!-- Title -->
+    <div class="title">
+      Activity Monitor
+    </div>
+    <div class="item">
+      <ul class="list-group">
+          {% for singleLbl in ActivityList %}
+          <li class="list-group-item"> 
+            <span><label id="lblActivity">{{ singleLbl }}</label></span>
+          </li>
+          {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Products List-->
+  <div class="shopping-cart">
+    <!-- Title -->
+    <div class="title">
+      Products List
+    </div>
+    <ul class="list-group" id="buyUL">
+      {% for singleItem in ProdList %}
+        <li class="list-group-item" id="myLI"> 
+          <div class="item">
+            <div class="image">
+              <input id="itemID" value="{{ singleItem['ItemID'] }}" type="text" readonly style="border:0px; width:50px;">
+            </div>
+            <div class="image">
+              <span>{{ singleItem['ItemName'] }}</span>
+            </div>
+            <div class="description">
+              <span>{{ singleItem['Description'] }}</span>
+              <span>Owner: {{ singleItem['UserID'] }}</span>
+              <span>{{ singleItem['Color'] }}</span>
+            </div>
+            <div class="total-price">${{ singleItem['Price'] }}</div>
+            <div class="buttons">
+              <button id="buyBtn" class = "btn" style="width:100px;" type = "submit">Buy</button>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</form>
+{% endblock %}

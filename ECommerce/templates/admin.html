@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% block home %}
+<form class="form-default">
+  <div class="shopping-cart">
+      <div class="title">
+        Welcome Admin
+      </div>
+      <div class="item">
+          <input readonly id="lblMessage" type="text" value="{{ lblMessageValue }}" style="font-weight:bold; height:50px; width:100%; margin: 10px 20px 20px 20px;">
+      </div>
+  </div>
+  <div class="shopping-cart">
+    <div class="title">
+        Operations On Users
+    </div>
+      <div class="item">
+        <input id="addUserID" placeholder="Enter User-ID" type="text" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <input id="addUsername" placeholder="Enter Name" type="text" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <input id="addPassword" placeholder="Enter Password" type="password" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <input id="addBalance" placeholder="Enter Balance" type="text" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <span style="margin: 20px;"><button id="btnAddUser" class="btn btn-default" type="submit">Add User</button></span>
+      </div>
+      <div class="item">
+        <input id="updateUserID" placeholder="Enter User-ID" type="text" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <input id="updatePassword" placeholder="Enter Password" type="password" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <input id="updateNewPassword" placeholder="Enter New Password" type="password" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <span style="margin: 20px;"><button id="btnUpdateUser" class="btn btn-default" type="submit">Update User</button></span>
+      </div>
+      <div class="item">
+        <input id="deleteUserID" placeholder="Enter User-ID" type="text" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <input id="deletePassword" placeholder="Enter Password" type="password" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <span style="margin: 20px;"><button id="btnDeleteUser" class="btn btn-default" type="submit">Delete User</button></span>
+      </div>
+  </div>
+  <div class="shopping-cart">
+      <div class="title">
+          Operations On Products
+      </div>
+      <div class="item" style="height:200px; display: inline-block;">
+        <input id="addItemID" placeholder="Enter Item-ID" type="text" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <input id="addItemName" placeholder="Enter Name" type="text" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <input id="addItemDescription" placeholder="Enter Description" type="text" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <input id="addItemColor" placeholder="Enter Item Color" type="text" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <input id="addItemPrice" placeholder="Enter Price" type="text" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <input id="addItemUserID" placeholder="Enter UserID of Owner" type="text" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <span style="margin: 20px;"><button id="btnAddItem" class="btn btn-default" type="submit">Add Item</button></span>
+      </div>
+      <div class="item" style="display: inline-block;">
+        <input id="updateItemID" placeholder="Enter Item-ID" type="text" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <input id="updateItemPrice" placeholder="Enter New Price" type="text" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <span style="margin: 20px;"><button id="btnUpdateItem" class="btn btn-default" type="submit">Update Item</button></span>
+      </div>
+      <div class="item" style="display: inline-block;">
+        <input id="deleteItemID" placeholder="Enter Item-ID" type="text" style="height: 40px; margin: 20px 20px 20px 20px;">
+        <span style="margin: 20px;"><button id="btnDeleteItem" class="btn btn-default" type="submit">Delete Item</button></span>
+      </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,269 @@
+<html>
+<head>
+<title>E-Commerce</title>
+<meta name = "viewport" content = "width=device-width, initial-scale = 1"/>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+<style>
+.shopping-cart {
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.10);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  float: left;
+}
+.shopping-cart2 {
+  width: 46%;
+  background: #FFFFFF;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.10);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  float: left;
+}
+.title {
+  height: 60px;
+  border-bottom: 1px solid #E1E8EE;
+  padding: 20px 30px;
+  color: #5E6977;
+  font-size: 18px;
+  font-weight: 400;
+}
+.item {
+  padding: 20px 30px;
+  height: 120px;
+  display: flex;
+}
+.item:nth-child(3) {
+  border-top:  1px solid #E1E8EE;
+  border-bottom:  1px solid #E1E8EE;
+}
+.buttons {
+  position: relative;
+  padding-top: 30px;
+  margin-right: 60px;
+}
+.is-active {
+  animation-name: animate;
+  animation-duration: .8s;
+  animation-iteration-count: 1;
+  animation-timing-function: steps(28);
+  animation-fill-mode: forwards;
+}
+ 
+@keyframes animate {
+  0%   { background-position: left;  }
+  50%  { background-position: right; }
+  100% { background-position: right; }
+}
+.image {
+  margin-right: 50px;
+}
+ 
+Let�s add some basic style to  product name and description.
+.description {
+  padding-top: 10px;
+  margin-right: 60px;
+  width: 115px;
+}
+ 
+.description span {
+  display: block;
+  font-size: 14px;
+  color: #43484D;
+  font-weight: 400;
+}
+ 
+.description span:first-child {
+  margin-bottom: 5px;
+}
+.description span:last-child {
+  font-weight: 300;
+  margin-top: 8px;
+  color: #86939E;
+}
+.quantity {
+  padding-top: 20px;
+  margin-right: 60px;
+}
+.quantity input {
+  -webkit-appearance: none;
+  border: none;
+  text-align: center;
+  width: 32px;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
+}
+button[class*=btn] {
+  height: 30px;
+  background-color: #E1E8EE;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+button:focus,
+input:focus {
+  outline:0;
+}
+.total-price {
+  width: 150px;
+  text-align: center;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
+}
+</style>
+</head>
+<body>
+    {% include 'includes/_navbar.html' %}
+    <div class="container">
+        {% block home %}
+        {% endblock %}
+    </div>
+    
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script>
+  $("#buyUL li").click(function(event) {
+    // alert($(this).children('div').children('input').attr('id'))
+    $.ajax({
+      data : {
+        itemID : $(this).children('div').children('div').children('input').val()
+      },
+      type : 'POST',
+      url: '/buyItem',
+      success: function(getActivityMessage) {
+           $("body").load("/getActivityMessage");
+     }
+    });
+    event.preventDefault();
+  });
+</script>
+<script>
+  $("#btnAddUser").click(function(event) {
+    $.ajax({
+      data : {
+        addUserID : $('#addUserID').val(),
+        addUsername : $('#addUsername').val(),
+        addPassword : $('#addPassword').val(),
+        addBalance : $('#addBalance').val()
+      },
+      type : 'POST',
+      url: '/btnAddUser',
+      success: function(getMessage) {
+        $("body").load("/getMessage");
+     }
+    });
+    event.preventDefault();
+  });
+</script>
+<script>
+  $("#btnUpdateUser").click(function(event) {
+    $.ajax({
+      data : {
+        updateUserID : $('#updateUserID').val(),
+        updatePassword : $('#updatePassword').val(),
+        updateNewPassword : $('#updateNewPassword').val()
+      },
+      type : 'POST',
+      url: '/btnUpdateUser',
+      success: function(getMessage) {
+        $("body").load("/getMessage");
+      }
+    });
+    event.preventDefault();
+  });
+</script>
+<script>
+  $("#btnDeleteUser").click(function(event) {
+    $.ajax({
+      data : {
+        deleteUserID : $('#deleteUserID').val(),
+        deletePassword : $('#deletePassword').val()
+      },
+      type : 'POST',
+      url: '/btnDeleteUser',
+      success: function(getMessage) {
+        $("body").load("/getMessage");
+      }
+    });
+    event.preventDefault();
+  });
+</script>
+<script>
+  $("#btnAddItem").click(function(event) {
+    $.ajax({
+      data : {
+        addItemID : $('#addItemID').val(),
+        addItemName : $('#addItemName').val(),
+        addItemDescription : $('#addItemDescription').val(),
+        addItemColor : $('#addItemColor').val(),
+        addItemPrice : $('#addItemPrice').val(),
+        addItemUserID : $('#addItemUserID').val()
+      },
+      type : 'POST',
+      url: '/btnAddItem',
+      success: function(getMessage) {
+        $("body").load("/getMessage");
+      }
+    });
+    event.preventDefault();
+  });
+</script>
+<script>
+  $("#btnUpdateItem").click(function(event) {
+    $.ajax({
+      data : {
+        updateItemID : $('#updateItemID').val(),
+        updateItemPrice : $('#updateItemPrice').val()
+      },
+      type : 'POST',
+      url: '/btnUpdateItemPrice',
+      success: function(getMessage) {
+        $("body").load("/getMessage");
+      }
+    });
+    event.preventDefault();
+  });
+</script>
+<script>
+  $("#btnDeleteItem").click(function(event) {
+    $.ajax({
+      data : {
+        deleteItemID : $('#deleteItemID').val()
+      },
+      type : 'POST',
+      url: '/btnDeleteItem',
+      success: function(getMessage) {
+        $("body").load("/getMessage");
+      }
+    });
+    event.preventDefault();
+  });
+</script>
+<script>
+  $("#btnLogin").click(function(event) {
+    // alert($(this).children('div').children('div').children('input').val())
+    $.ajax({
+      data : {
+        loginUsername : $('#loginUsername').val(),
+        loginPassword : $('#loginPassword').val()
+      },
+      type : 'POST',
+      url: '/btnLogin',
+      success: function(getActivityMessage) {
+        $("body").load("/getActivityMessage");
+      }
+    });
+    event.preventDefault();
+  });
+</script>
+</body>
+</html>
